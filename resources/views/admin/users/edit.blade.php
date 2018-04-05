@@ -15,7 +15,7 @@
         <div class="col-sm-3">
 
         </div>
-        <div class="col-sm-9">
+        <div class="col-sm-6">
             {!! Form::model(['method'=>'PATCH', 'action'=> ['AdminUsersController@store', $user->id], 'files'=>true]) !!}
 
             <div class="form-group">
@@ -43,6 +43,9 @@
                 {!! Form::submit('Delete User', ['class'=>'btn btn-danger']) !!}
             </div>
             {!! Form::close() !!}
+        </div>
+        <div class="col-sm-3">
+
         </div>
     </div>
     @include('includes.form_error')
