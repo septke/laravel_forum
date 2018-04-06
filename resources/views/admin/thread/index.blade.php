@@ -13,6 +13,7 @@
                     <th>User Image</th>
                     <th>User</th>
                     <th>Thread Image</th>
+                    <th>Category</th>
                     <th>Title</th>
                     <th>Body</th>
                     <th>Created at</th>
@@ -27,6 +28,7 @@
                             <td><img height="50" src="{{$thread->user->photo ? $thread->user->photo->file : 'http://placehold.it/400x400'}}" alt=""></td>
                             <td>{{$thread->user->name}}</td>
                             <td><img height="50" src="{{$thread->photo ? $thread->photo->file : 'http://placehold.it/400x400'}}" alt=""></td>
+                            <td>{{$thread->category ? $thread->category->name : 'Thread without category'}}</td>
                             <td><a href="{{url('/thread/' . $thread->id)}}">{{$thread->title}}</a></td>
                             <td>{{str_limit($thread->body, 40)}}</td>
                             <td>{{$thread->created_at}}</td>

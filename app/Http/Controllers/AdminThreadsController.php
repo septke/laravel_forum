@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Category;
 use App\Photo;
 use App\Thread;
 use Illuminate\Http\Request;
@@ -27,7 +28,9 @@ class AdminThreadsController extends Controller
      */
     public function create()
     {
-        return view('admin.thread.create');
+
+        $categories = Category::pluck('name','id')->all();
+        return view('admin.thread.create', compact('categories'));
     }
 
     /**
@@ -45,6 +48,7 @@ class AdminThreadsController extends Controller
             $file->move('images', $name);
             $photo = Photo::create(['file' => $name]);
             $input['photo_id'] = $photo->id;
+
         }
         return redirect('/admin/threads');
     }

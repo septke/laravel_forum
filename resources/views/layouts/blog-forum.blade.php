@@ -39,6 +39,15 @@
             </div>
             <a class="navbar-brand" href="/threads">Reddit 2.0</a>
         </div>
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <div class="navbar" id="">
+            <ul class="nav navbar-nav">
+                <li>
+                    <a href="/admin/threads">Admin</a>
+                </li>
+            </ul>
+        </div>
+        <!-- /.navbar-collapse -->
     </div>
     <!-- /.container -->
 </nav>

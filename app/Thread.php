@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Thread extends Model
 {
-    protected $fillable = ['thread_id', 'user_id', 'category_id', 'title', 'body', 'photo_id'];
+    protected $fillable = ['thread_id', 'user_id', 'category_id', 'title', 'body', 'photo_id', 'category_id'];
 
     public function user(){
         return $this->belongsTo('App\User');
@@ -20,4 +20,5 @@ class Thread extends Model
     public function photo(){
         return $this->belongsTo('App\Photo');
     }
+
 }
