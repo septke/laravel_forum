@@ -19,6 +19,8 @@ Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
 Route::get('/thread/{id}',['as' => 'home.thread', 'uses'=>'AdminThreadsController@Thread']);
+Route::get('threads', 'ThreadController@index');
+
 
 /** ROUTES **/
 /** Admin Routes  **/

@@ -6,7 +6,7 @@
     <br>
     <br>
     <h1>{{$thread->title}}</h1>
-
+    <img height="600" src="{{$thread->photo ? $thread->photo->file : 'http://placehold.it/400x400'}}" alt="">
     <!-- Author -->
     <p class="lead">
         by <a href="#">{{$thread->user->name}}</a>
@@ -14,7 +14,6 @@
     <hr>
     <!-- Date/Time -->
     <p><span class="glyphicon glyphicon-time"></span> Posted on {{$thread->created_at}}</p>
-
     <hr>
             <!-- Post Content -->
             <p class="lead">{{$thread->body}}</p>
@@ -24,7 +23,7 @@
         @foreach($thread->comments as $comment)
             <div class="media">
                 <div class="media-body">
-                    <h4 class="media-heading">{{$comment->user->name}}
+                    <h4 class="media-heading"><img height="50" src="{{$thread->user->photo ? $thread->user->photo->file : 'http://placehold.it/400x400'}}" alt="">{{$comment->user->name}}
                         <small>{{$comment->created_at->diffForHumans()}}</small>
                     </h4>
                     <p>{{$comment->body}}</p>
@@ -32,8 +31,6 @@
             </div>
         @endforeach
     @endif
-
-
         <hr>
     <!-- Thread Comments Form -->
     @if(Auth::check())
@@ -46,37 +43,9 @@
                 {!! Form::textarea('body', null, ['class'=>'form-control', 'rows'=> 3]) !!}
             </div>
             <div class="form-group">
-                {!! Form::submit('Submit thread', ['class'=>'btn btn-primary']) !!}
+                {!! Form::submit('Submit Comment', ['class'=>'btn btn-primary']) !!}
             </div>
             {!! Form::close() !!}
         </div>
     @endif
-
-
-    {{--<!-- Comment -->--}}
-    {{--<div class="media">--}}
-        {{--<a class="pull-left" href="#">--}}
-            {{--<img class="media-object" src="http://placehold.it/64x64" alt="">--}}
-        {{--</a>--}}
-        {{--<div class="media-body">--}}
-            {{--<h4 class="media-heading">Start Bootstrap--}}
-                {{--<small>August 25, 2014 at 9:30 PM</small>--}}
-            {{--</h4>--}}
-            {{--Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin commodo. Cras purus odio, vestibulum in vulputate at, tempus viverra turpis. Fusce condimentum nunc ac nisi vulputate fringilla. Donec lacinia congue felis in faucibus.--}}
-            {{--<!-- Nested Comment -->--}}
-            {{--<div class="media">--}}
-                {{--<a class="pull-left" href="#">--}}
-                    {{--<img class="media-object" src="http://placehold.it/64x64" alt="">--}}
-                {{--</a>--}}
-                {{--<div class="media-body">--}}
-                    {{--<h4 class="media-heading">Nested Start Bootstrap--}}
-                        {{--<small>August 25, 2014 at 9:30 PM</small>--}}
-                    {{--</h4>--}}
-                    {{--Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin commodo. Cras purus odio, vestibulum in vulputate at, tempus viverra turpis. Fusce condimentum nunc ac nisi vulputate fringilla. Donec lacinia congue felis in faucibus.--}}
-                {{--</div>--}}
-            {{--</div>--}}
-            {{--<!-- End Nested Comment -->--}}
-        {{--</div>--}}
-    {{--</div>--}}
-
 @endsection

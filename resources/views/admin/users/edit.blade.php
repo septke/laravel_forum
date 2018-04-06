@@ -16,7 +16,7 @@
 
         </div>
         <div class="col-sm-6">
-            {!! Form::model(['method'=>'PATCH', 'action'=> ['AdminUsersController@store', $user->id], 'files'=>true]) !!}
+            {!! Form::model($user, ['method'=>'PUT', 'action'=> ['AdminUsersController@update', $user->id], 'files'=>true]) !!}
 
             <div class="form-group">
                 {!! Form::label('name', 'Name:') !!}
@@ -29,6 +29,10 @@
             <div class="form-group">
                 {!! Form::label('role_id', 'Role:') !!}
                 {!! Form::select('role_id', [''=>'Choose Options'] + $roles , null, ['class'=>'form-control']) !!}
+            </div>
+            <div class="form-group">
+                {!! Form::label('photo_id', 'Photo:') !!}
+                {!! Form::file('photo_id', null , ['class'=>'form-control']) !!}
             </div>
             <div class="form-group">
                 {!! Form::label('password', 'Password:') !!}
@@ -45,7 +49,7 @@
             {!! Form::close() !!}
         </div>
         <div class="col-sm-3">
-
+            <img height="400" src="{{$user->photo ? $user->photo->file : 'http://placehold.it/400x400'}}" class="img-responsive" alt="">
         </div>
     </div>
     @include('includes.form_error')

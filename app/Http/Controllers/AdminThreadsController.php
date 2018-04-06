@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Photo;
 use App\Thread;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -39,8 +40,17 @@ class AdminThreadsController extends Controller
         $input = $request->all();
         $user = Auth::user();
         $user->threads()->create($input);
+        if($file = $request->file('photo_id')){
+            $name = time() . $file->getClientOriginalName();
+            $file->move('images', $name);
+            $photo = Photo::create(['file' => $name]);
+            $input['photo_id'] = $photo->id;
+        }
         return redirect('/admin/threads');
     }
+//        //return $request->all();
+//        //$input = $request->all();
+
 
     /**
      * Display the specified resource.

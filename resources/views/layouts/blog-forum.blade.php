@@ -9,7 +9,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>Blog Post - Start Bootstrap Template</title>
+    <title>Threads - Reddit 2.0</title>
 
     <!-- Bootstrap Core CSS -->
     <link href="{{asset('css/libs.css')}}" rel="stylesheet">
@@ -25,8 +25,8 @@
 </head>
 
 <body>
-
 <!-- Navigation -->
+
 <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
     <div class="container">
         <!-- Brand and toggle get grouped for better mobile display -->
@@ -64,16 +64,16 @@
     <div class="row">
 
         <!-- Blog Post Content Column -->
-        <div class="col-lg-8">
+        <div class="col-lg-9">
           @yield('content')
         </div>
 
         <!-- Blog Sidebar Widgets Column -->
-        <div class="col-md-4">
-    <h3>Welcome To Reddit 2.0</h3>
+        <div class="col-md-3">
+    <h4>Welcome To Reddit 2.0</h4>
             <!-- Blog Search Well -->
             <div class="well">
-                <h4>Forum Search</h4>
+                <h5>Forum Search</h5>
                 <div class="input-group">
                     <input type="text" class="form-control">
                     <span class="input-group-btn">
