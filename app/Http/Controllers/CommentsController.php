@@ -2,22 +2,17 @@
 
 namespace App\Http\Controllers;
 
-use App\Comment;
-use App\Thread;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
 
-class AdminCommentController extends Controller
+class CommentsController extends Controller
 {
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
-    {
-        $comments = Comment::all();
-        return view('admin.comments.index', compact('comments'));
+    public function index(){
+        //
     }
 
     /**
@@ -27,7 +22,7 @@ class AdminCommentController extends Controller
      */
     public function create()
     {
-        return view('admin.comments.create');
+        //
     }
 
     /**
@@ -36,15 +31,9 @@ class AdminCommentController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request){
-        $user = Auth::user();
-        $data = [
-            'thread_id' => $request->thread_id,
-            'user_id' => $user->id,
-            'body' => $request->body
-        ];
-        Comment::create($data);
-        return redirect()->back();
+    public function store(Request $request)
+    {
+        //
     }
 
     /**
@@ -53,10 +42,9 @@ class AdminCommentController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id){
-        $thread = Thread::findOrFail($id);
-        $comments = $thread->comments;
-        return view('admin.comments.show', compact('comments'));
+    public function show($id)
+    {
+        //
     }
 
     /**
@@ -79,8 +67,7 @@ class AdminCommentController extends Controller
      */
     public function update(Request $request, $id)
     {
-        Comment::findOrFail($id)->update($request->all());
-        return redirect('/admin/comments');
+        //
     }
 
     /**
@@ -91,7 +78,6 @@ class AdminCommentController extends Controller
      */
     public function destroy($id)
     {
-        Comment::findOrFail($id)->delete();
-        return redirect()->back();
+        //
     }
 }

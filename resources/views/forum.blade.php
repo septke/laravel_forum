@@ -20,59 +20,39 @@
             <p class="lead">{{$thread->body}}</p>
     <hr>
     <!--Thread Comments -->
-    @if(Session::has('comment_message'))
-        {{session('comment_message')}}
+    @if(count($thread->comments) >0)
+        @foreach($thread->comments as $comment)
+            <div class="media">
+                <div class="media-body">
+                    <h4 class="media-heading">{{$comment->user->name}}
+                        <small>{{$comment->created_at->diffForHumans()}}</small>
+                    </h4>
+                    <p>{{$comment->body}}</p>
+                </div>
+            </div>
+        @endforeach
     @endif
 
+
+        <hr>
     <!-- Thread Comments Form -->
-    <form action="post">
-            @method('post')
+    @if(Auth::check())
+        <div class="well">
+            <h4>Leave a Comment:</h4>
+            {!! Form::open(['method'=> 'POST', 'action' => 'AdminCommentController@store']) !!}
+            <input type="hidden" name="thread_id" value="{{$thread->id}}">
+            <div class="form-group">
+                {!! Form::label('body', 'Body:') !!}
+                {!! Form::textarea('body', null, ['class'=>'form-control', 'rows'=> 3]) !!}
+            </div>
+            <div class="form-group">
+                {!! Form::submit('Submit thread', ['class'=>'btn btn-primary']) !!}
+            </div>
+            {!! Form::close() !!}
+        </div>
+    @endif
 
 
-    </form>
-
-    <!-- Blog Comments -->
-
-    {{--@if(Session::has('comment_message'))--}}
-        {{--{{session('comment_message')}}--}}
-    {{--@endif--}}
-
-    {{--<!-- Comments Form -->--}}
-    {{--@if(Auth::check())--}}
-        {{--<div class="well">--}}
-            {{--<h4>Leave a Comment:</h4>--}}
-            {{--{!! Form::open(['method'=> 'POST', 'action' => 'PostCommentsController@store']) !!}--}}
-            {{--<input type="hidden" name="post_id" value="{{$post->id}}">--}}
-            {{--<div class="form-group">--}}
-                {{--{!! Form::label('body', 'Body:') !!}--}}
-                {{--{!! Form::textarea('body', null, ['class'=>'form-control', 'rows'=> 3]) !!}--}}
-            {{--</div>--}}
-            {{--<div class="form-group">--}}
-                {{--{!! Form::submit('Submit comment', ['class'=>'btn btn-primary']) !!}--}}
-            {{--</div>--}}
-            {{--{!! Form::close() !!}--}}
-        {{--</div>--}}
-    {{--@endif--}}
-    {{--<hr>--}}
-
-    {{--<!-- Posted Comments -->--}}
-
-    {{--<!-- Comment -->--}}
-    {{--@if(count($comments) >0)--}}
-        {{--@foreach($comments as $comment)--}}
-            {{--<div class="media">--}}
-                {{--<a class="pull-left" href="#">--}}
-                    {{--<img height="64" class="media-object" src="{{$comment->photo}}" alt="">--}}
-                {{--</a>--}}
-                {{--<div class="media-body">--}}
-                    {{--<h4 class="media-heading">{{$comment->author}}--}}
-                        {{--<small>{{$comment->created_at->diffForHumans()}}</small>--}}
-                    {{--</h4>--}}
-                    {{--<p>{{$comment->body}}</p>--}}
-                {{--</div>--}}
-            {{--</div>--}}
-        {{--@endforeach--}}
-    {{--@endif--}}
     {{--<!-- Comment -->--}}
     {{--<div class="media">--}}
         {{--<a class="pull-left" href="#">--}}

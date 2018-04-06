@@ -88,6 +88,7 @@ class AdminThreadsController extends Controller
     }
     public function thread($id){
         $thread = Thread::findOrFail($id);
+
         return view('forum', compact('thread'));
     }
 }
