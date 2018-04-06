@@ -33,9 +33,8 @@ class AdminCategoriesController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
-    {
-        //
+    public function store(Request $request){
+        return view('admin.categories.create');
     }
 
     /**
@@ -55,9 +54,9 @@ class AdminCategoriesController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
-    {
-        //
+    public function edit($id){
+        $category = Category::findOrFail($id);
+        return view('admin.categories.edit', compact('category'));
     }
 
     /**
@@ -69,7 +68,9 @@ class AdminCategoriesController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $category = Category::findOrFail($id);
+        $category->update($request->all());
+        return redirect('/admin/categories');
     }
 
     /**
