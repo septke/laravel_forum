@@ -22,9 +22,7 @@ class AdminCategoriesController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
-    {
-        return view('admin.categories.edit');
+    public function create(){
     }
 
     /**
@@ -34,7 +32,8 @@ class AdminCategoriesController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request){
-        return view('admin.categories.create');
+        Category::create($request->all());
+        return redirect('admin/categories');
     }
 
     /**
@@ -81,6 +80,7 @@ class AdminCategoriesController extends Controller
      */
     public function destroy($id)
     {
-        //
+        Category::findOrFail($id)->delete();
+        return redirect('/admin/categories');
     }
 }
